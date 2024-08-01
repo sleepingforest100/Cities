@@ -1,0 +1,19 @@
+[
+    {
+      "model": "products.city",
+      "pk": 1,
+      "fields": {
+        "name": "Test City"
+      }
+    },
+    {
+      "model": "products.product",
+      "pk": 1,
+      "fields": {
+        "name": "Test Product",
+        "photo": "https://upload.wikimedia.org/wikipedia/commons/4/41/Sunflower_from_Silesia2.jpg",
+        "city": 1
+      }
+    }
+  ]
+  
