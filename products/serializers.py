@@ -1,17 +1,18 @@
 from rest_framework import serializers
-from .models import Product, Photo
+from .models import Product, Photo, City
 
 class PhotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo
-        fields = ['image']
+        fields = ['image', 'city']
 
 class ProductSerializer(serializers.ModelSerializer):
     photos = serializers.SerializerMethodField()
+    cities = serializers.SerializerMethodField()
 
     class Meta:
         model = Product
-        fields = ['name', 'photos']
+        fields = ['name', 'photos', 'cities']
 
     def get_photos(self, obj):
         request = self.context.get('request')
@@ -24,3 +25,6 @@ class ProductSerializer(serializers.ModelSerializer):
 
         common_photos = obj.photos.filter(city__isnull=True)
         return PhotoSerializer(common_photos, many=True).data
+
+    def get_cities(self, obj):
+        return [city.name for city in obj.cities.all()]
