@@ -11,13 +11,13 @@ class ProductTests(APITestCase):
     def test_get_products_with_city_id(self):
         response = self.client.get(self.url, HTTP_CITY_ID=self.city.id)
         self.assertEqual(response.status_code, 200)
-        # Проверка структуры данных
+        
         self.assertEqual(len(response.data), 1)
         self.assertEqual(response.data[0]['name'], "Test Product")
 
     def test_get_products_without_city_id(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
-        # Проверка структуры данных
+        
         self.assertEqual(len(response.data), 1)
         self.assertEqual(response.data[0]['name'], "Test Product")
