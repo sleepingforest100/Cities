@@ -12,6 +12,5 @@ class ProductSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         city_id = request.headers.get('City-ID') if request else None
         if city_id:
-            # Ваш код для обработки city_id
             pass
         return obj.photo
