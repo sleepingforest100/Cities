@@ -27,4 +27,5 @@ class ProductSerializer(serializers.ModelSerializer):
         return PhotoSerializer(common_photos, many=True).data
 
     def get_cities(self, obj):
-        return [city.name for city in obj.cities.all()]
+        cities = City.objects.filter(photos__product=obj).distinct()
+        return [city.name for city in cities]
